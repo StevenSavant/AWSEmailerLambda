@@ -3,8 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
 # C extensions
 *.so
+lambda-dist
+.terragrunt*
+.terraform*
+
 
 # Distribution / packaging
 .Python

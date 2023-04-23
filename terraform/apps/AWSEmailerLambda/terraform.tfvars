@@ -1,0 +1,5 @@
+deployment-bucket = "awsstarfire-lambda-code"
+deployment-object-name = "AWSEmailer.zip"
+handler_function = "emailer.lambda_handler"
+lambda-app-name = "AWSEmailerLambda"
+python_version = "python3.9"
