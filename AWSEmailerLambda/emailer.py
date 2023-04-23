@@ -8,6 +8,9 @@ client = boto3.client('ses')
 
 
 def send_email(to_address : str, subject: str, body: str ) -> None:
+
+    # Note: As long as SES is in sandbox mode, this will only work for verified email addresses
+    
     print(f"sending email to: {to_address} // {subject}")
     response = client.send_email(
         Source=to_address,
@@ -71,9 +74,13 @@ def main(event: Dict, context: Dict) -> LambdaResponse:
 
     else:
         print("Email Request is missing appropriate purpose")
-        # TODO: return appropriate AWS Lambda Reponse:
-        # Example: https://docs.aws.amazon.com/lambda/latest/dg/urls-invocation.html#:~:text=Response%20payload%20format
-        exit()
+        response: LambdaResponse = {
+            "headers" : {"Content-Type": "application/json"},
+            "statusCode": 400,
+            "isBase64Encoded": True,
+            "body" : "Invalid Email Purpose"
+        }
+        return json.dumps(response)
 
 
 def lambda_handler(*args, **kwargs):
