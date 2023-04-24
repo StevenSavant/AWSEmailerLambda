@@ -5,9 +5,10 @@ resource "aws_lambda_function_url" "lambda-app-url" {
   cors {
     allow_origins     = ["*"]
     allow_methods     = ["POST"]
-    allow_headers     = ["date", "keep-alive"]
+    allow_headers     = ["date", "keep-alive", "accept", "accept-language", "content-type", "content-language"]
     expose_headers    = ["keep-alive", "date"]
-    max_age           = 86400
+    max_age           = 5
+    allow_credentials = true
   }
 }
 
